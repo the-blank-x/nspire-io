@@ -31,13 +31,13 @@ LIB = libnspireio.a
 
 all: demo
 
-lib: $(LIB)
+lib: lib/$(LIB)
 
-$(LIB): $(OBJS)
+lib/$(LIB): $(OBJS)
 	mkdir -p lib
 	$(AR) rcs "lib/$(LIB)" $^
 
-demo: $(LIB)
+demo: lib/$(LIB)
 	mkdir -p bin
 	+make -C demo/adv ARCH=$(ARCH)
 	+make -C demo/compatibility ARCH=$(ARCH)
@@ -46,7 +46,7 @@ demo: $(LIB)
 	+make -C demo/tests ARCH=$(ARCH)
 	+make -C demo/cplusplus ARCH=$(ARCH)
 	
-install: $(LIB)
+install: lib/$(LIB)
 	mkdir -p "$(DESTDIR)/include/nspireio"
 	cp include/nspireio2.h "$(DESTDIR)/include/nspireio2.h"
 	cp include/nspireio/* "$(DESTDIR)/include/nspireio"
