@@ -95,14 +95,6 @@ void nio_cursor_draw(nio_console* csl)
 
 			unsigned char background_color = color >> 8;
 
-			// Sanity check to make sure the user defined something for the character
-			if (c->cursor_custom_data == NULL) {
-				// Set the cursor to a full cursor
-				int p;
-				for(p = 0; p <= 5; p++)
-					c->cursor_custom_data[p] = 0xFF;
-			}
-
 			// Draw it!
 			int pixelOn;
 			for(i = 0; i < NIO_CHAR_WIDTH; i++)
