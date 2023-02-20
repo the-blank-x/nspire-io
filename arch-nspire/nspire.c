@@ -109,8 +109,12 @@ void nio_vram_pixel_set(unsigned int x, unsigned int y, unsigned int c)
 	}
 }
 
-void nio_vram_fill(const unsigned x, const unsigned y, const unsigned w, const unsigned h, unsigned color)
+void nio_vram_fill(const unsigned x, const unsigned y, unsigned w, const unsigned h, unsigned color)
 {
+	// Hack: Round up to the screen width to cover the pixels between the last char and the edge.
+	if(x + w == (unsigned)(SCREEN_WIDTH/NIO_CHAR_WIDTH) * NIO_CHAR_WIDTH)
+		w = SCREEN_WIDTH - x;
+
 	color = getPaletteColor(color);
 	if(is_color)
 	{
@@ -146,8 +150,12 @@ void nio_vram_fill(const unsigned x, const unsigned y, const unsigned w, const u
 	}
 }
 
-void nio_vram_scroll(const unsigned x, const unsigned y, const unsigned w, const unsigned h, const unsigned scroll, const unsigned color) {
+void nio_vram_scroll(const unsigned x, const unsigned y, unsigned w, const unsigned h, const unsigned scroll, const unsigned color) {
 	if (!scroll) return;
+
+	// Hack: Round up to the screen width to cover the pixels between the last char and the edge.
+	if(x + w == (unsigned)(SCREEN_WIDTH/NIO_CHAR_WIDTH) * NIO_CHAR_WIDTH)
+		w = SCREEN_WIDTH - x;
 
 	unsigned int r = h - scroll;
 	if (is_color)
