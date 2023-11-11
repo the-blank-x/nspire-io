@@ -25,9 +25,7 @@
  * C++ specific console header
  */
 
-extern "C" {
-	#include "nspireio.h"
-}
+#include "nspireio.h"
 
 #include "ios_base.ipp"
 

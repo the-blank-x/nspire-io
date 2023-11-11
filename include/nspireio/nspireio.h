@@ -28,6 +28,10 @@
 #ifndef NSPIREIO_H
 #define NSPIREIO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "platform.h"
 #include "queue.h"
 
@@ -492,6 +496,10 @@ void nio_cursor_custom(nio_console* c, unsigned char cursor_data[6]);
 #define nio_SetCursorType				nio_cursor_type
 #define nio_SetCursorWidth				nio_cursor_width
 #define nio_SetCursorCustom				nio_cursor_custom
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif
